@@ -6,6 +6,8 @@ import com.rps.rockpaperscissors.service.WinstreakService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,7 +18,11 @@ public class WinstreakController {
 
     @GetMapping("/topWinstreak")
     public ResponseEntity<?> getTopWinstreak(){
-        Winstreak top = wstreakService.getTopWinstreak();
-        return ResponseEntity.ok(top);
+        return ResponseEntity.ok(wstreakService.getTopWinstreak());
+    }
+
+    @PostMapping("/winstreaks")
+    public ResponseEntity<?> createWinstreak(@RequestBody Winstreak w){
+        return ResponseEntity.ok(wstreakService.createWinstreak(w));
     }
 }

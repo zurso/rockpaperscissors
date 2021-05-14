@@ -9,6 +9,15 @@ public class Winstreak {
     private int streak;
     private int score;
 
+    public Winstreak() {
+    }
+    public Winstreak(int id, Timestamp timestamp, int streak, int score) {
+        this.id = id;
+        this.timestamp = timestamp;
+        this.streak = streak;
+        this.score = score;
+    }
+    
     public Timestamp getTimestamp() {
         return timestamp;
     }

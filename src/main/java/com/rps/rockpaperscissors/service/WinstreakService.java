@@ -1,5 +1,6 @@
 package com.rps.rockpaperscissors.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.rps.rockpaperscissors.domain.Winstreak;
@@ -17,7 +18,7 @@ public class WinstreakService {
     public Winstreak getTopWinstreak(){
         List<Winstreak> winstreaks = wstreakRepo.getWinstreaks();
         if(winstreaks.isEmpty()){
-            return null;
+            return new Winstreak(-1, new Timestamp(System.currentTimeMillis()), 0, 0);
         }
         else{
             Winstreak top = winstreaks.get(0);
@@ -29,4 +30,8 @@ public class WinstreakService {
             return top;
         }
     }
+
+	public Winstreak createWinstreak(Winstreak w) {
+        return wstreakRepo.save(w);
+	}
 }

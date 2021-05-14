@@ -16,4 +16,9 @@ public class WinstreakRepository {
     public List<Winstreak> getWinstreaks(){
         return winstreaks;
     }
+
+    public Winstreak save(Winstreak w){
+        winstreaks.add(w);
+        return w;
+    }
 }
