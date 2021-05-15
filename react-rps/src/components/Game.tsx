@@ -4,7 +4,6 @@ import scissors from '../assets/images/icon-scissors.svg';
 
 const Game = () => {
     const shoot = (e: React.MouseEvent<HTMLElement>) => {
-        //console.log((e.target as any).value);
         console.log((e.currentTarget as HTMLInputElement).value);
     }
 
