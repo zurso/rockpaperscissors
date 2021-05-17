@@ -26,8 +26,8 @@ function App() {
   return (
     <div className="App">
       <Header score = {score}/>
-      <Game onShoot= {shoot}/>
-      <Results pick= {userPick} state = {played} reset= {resetGame} updateScore = {updateUserScore}/>
+      { played? <Results pick= {userPick} state = {played} reset= {resetGame} updateScore = {updateUserScore}/>
+        : <Game onShoot= {shoot}/> }
     </div>
   );
 }

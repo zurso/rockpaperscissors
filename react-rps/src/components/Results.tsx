@@ -55,7 +55,7 @@ const Results = ({pick, state, reset, updateScore}: Props) => {
             You picked: {userPick}
             Computer picked: {cpuPick?.name}
             Result: {result}
-            <button onClick={() => reset()}>Reset Game</button>
+            <button onClick={() => reset()}>Play Again</button>
         </div>
     )
 }
