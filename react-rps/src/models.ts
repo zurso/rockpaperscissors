@@ -6,4 +6,8 @@ type Winstreak = {
     score: Number
 }
 
-export type {Winstreak}
+type Pick = {
+    name: String
+}
+
+export type {Winstreak, Pick}

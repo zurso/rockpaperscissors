@@ -1,4 +1,3 @@
-
 const Rules = () => {
     return (
         <div>
