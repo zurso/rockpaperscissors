@@ -1,7 +1,7 @@
 
 type Winstreak = {
-    id: number
-    timestamp: Date
+    id?: number
+    timestamp?: Date
     streak: number
     score: number
 }
