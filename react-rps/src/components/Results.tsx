@@ -2,15 +2,16 @@ import { useEffect, useState } from "react";
 import {Pick} from "../models"
 
 type Props = {
-    state: Boolean
-    pick: String
-    reset: () => void    
+    state: boolean
+    pick: string
+    reset: () => void   
+    updateScore: (point: number) => void 
 }
 
-const Results = ({pick, state, reset}: Props) => {
+const Results = ({pick, state, reset, updateScore}: Props) => {
     const [cpuPick, setCpuPick] = useState(null as unknown as Pick);
-    const [userPick, setUserPick] = useState(null as unknown as String);
-    const [result, setResult] = useState(null as unknown as String);
+    const [userPick, setUserPick] = useState(null as unknown as string);
+    const [result, setResult] = useState(null as unknown as string);
     //const [played, setPlayed] = useState(false);
 
     const getCPUPick = () => {
@@ -33,14 +34,18 @@ const Results = ({pick, state, reset}: Props) => {
 
     useEffect(() => {
         if(cpuPick!=null){
+            console.log("Computer pick: "+cpuPick.name);
             if(cpuPick.name===userPick){
                 setResult("Tie");
+                updateScore(0);
             }
             else if((userPick==="rock"&&cpuPick.name==="scissors")||(userPick==="paper"&&cpuPick.name==="rock")||(userPick==="scissors"&&cpuPick.name==="paper")){
                 setResult("Win");
+                updateScore(1);
             }
             else{
                 setResult("Loss");
+                updateScore(-1);
             }
         }
     }, [cpuPick])

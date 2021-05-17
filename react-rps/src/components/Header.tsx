@@ -2,12 +2,16 @@ import logo from '../assets/images/logo.svg';
 import TopStreak from './TopStreak'
 import Score from './Score'
 
-const Header = () => {
+type Props = {
+    score: number
+ }
+
+const Header = ({score}: Props) => {
     return (
         <div>
             <img src={logo} className="App-logo" alt="logo" />
             <TopStreak/>
-            <Score/>
+            <Score updatedScore = {score}/>
         </div>
     )
 }

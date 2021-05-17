@@ -1,13 +1,13 @@
 
 type Winstreak = {
-    id: Number
+    id: number
     timestamp: Date
-    streak: Number
-    score: Number
+    streak: number
+    score: number
 }
 
 type Pick = {
-    name: String
+    name: string
 }
 
 export type {Winstreak, Pick}

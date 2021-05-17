@@ -6,11 +6,11 @@ import Results from './components/Results'
 import { useState } from 'react';
 
 function App() {
-  const [userPick, setUserPick] = useState(null as unknown as String);
-  const [played, setPlayed] = useState(false);
+  const [userPick, setUserPick] = useState(null as unknown as string);
+  const [played, setPlayed] = useState(false as boolean);
+  const [score, setScore] = useState(0 as number);
 
   const shoot = (e: React.MouseEvent<HTMLElement>) => {
-    console.log((e.currentTarget as HTMLInputElement).value);
     setPlayed(true);
     setUserPick((e.currentTarget as HTMLInputElement).value);
   }
@@ -19,11 +19,15 @@ function App() {
     setPlayed(false);
   }
 
+  const updateUserScore = (point: number) => {
+    setScore(point+score);
+  }
+
   return (
     <div className="App">
-      <Header/>
+      <Header score = {score}/>
       <Game onShoot= {shoot}/>
-      <Results pick= {userPick} state = {played} reset= {resetGame}/>
+      <Results pick= {userPick} state = {played} reset= {resetGame} updateScore = {updateUserScore}/>
     </div>
   );
 }
