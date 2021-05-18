@@ -1,0 +1,12 @@
+
+.Play-Button {
+    border-radius: 50%;
+    width: 160px;
+    height: 160px;
+}
+
+.Play-Again-Button {
+    border-radius: 10%;
+    width: 175px;
+    height: 35px;
+}

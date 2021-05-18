@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {Pick} from "../models"
+import "../game.css";
 
 type Props = {
     state: boolean
@@ -55,7 +56,7 @@ const Results = ({pick, state, reset, updateScore}: Props) => {
             You picked: {userPick}
             Computer picked: {cpuPick?.name}
             Result: {result}
-            <button onClick={() => reset()}>Play Again</button>
+            <button className= "Play-Again-Button" onClick={() => reset()}>PLAY AGAIN</button>
         </div>
     )
 }
