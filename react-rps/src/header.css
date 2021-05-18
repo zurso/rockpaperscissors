@@ -1,0 +1,14 @@
+
+.Header {
+    border-style: solid;
+    border-color: hsl(217, 16%, 45%);
+    border-width: medium;
+    border-radius: 15px;
+    width: 700px;
+    height: 95px;
+    padding: 25px;
+}
+
+.App-logo {
+    float: left;
+}

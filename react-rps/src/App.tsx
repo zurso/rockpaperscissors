@@ -1,5 +1,5 @@
 
-//import './App.css';
+import './App.css';
 import Header from './components/Header'
 import Game from './components/Game'
 import Results from './components/Results'
@@ -57,10 +57,12 @@ function App() {
 
   return (
     <div className="App">
-      <Header score = {score} topstreak = {topstreak}/>
-      { played? <Results pick= {userPick} state = {played} reset= {resetGame} updateScore = {updateUserScore}/>
-        : <Game onShoot= {shoot}/> }
-      <button>RULES</button>
+      <div className="App-Center">
+        <Header score = {score} topstreak = {topstreak}/>
+        { played? <Results pick= {userPick} state = {played} reset= {resetGame} updateScore = {updateUserScore}/>
+          : <Game onShoot= {shoot}/> }
+        <button>RULES</button>
+      </div>
     </div>
   );
 }

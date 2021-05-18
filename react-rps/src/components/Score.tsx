@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../stats.css";
 
 type Props = {
     updatedScore: number
@@ -12,8 +13,9 @@ const Score = ({updatedScore}: Props) => {
     }, [updatedScore])
 
     return (
-        <div>
-            {score}
+        <div className = "ScoreBlock">
+                <div className = "StatsLabel">SCORE</div>
+                <div className = "StatsNumber">{score}</div>
         </div>
     )
 }

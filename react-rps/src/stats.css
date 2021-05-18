@@ -1,0 +1,40 @@
+
+
+.ScoreBlock {
+    width: 140px;
+    background-color: white;
+    border-radius: 10px;
+    height: 100px;
+    float:right;
+    position: relative;
+}
+
+.WinStreakBlock {
+    width: 275px;
+    background-color: white;
+    border-radius: 10px;
+    height: 100px;
+    float:left;
+    margin-left:75px;
+    position: relative;
+}
+
+.StatsLabel {
+    font-weight: 700;
+    font-size: 15px;
+    color: hsl(229, 64%, 46%);
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translate(-50%, 50%);
+}
+
+.StatsNumber {
+    font-weight: 700;
+    font-size: 50px;
+    color: hsl(229, 25%, 31%);
+    position: absolute;
+    left: 50%;
+    top: 65%;
+    transform: translate(-50%, -50%);
+}
