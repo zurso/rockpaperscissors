@@ -17,7 +17,7 @@ function App() {
 
   const shoot = (e: React.MouseEvent<HTMLElement>) => {
     setPlayed(true);
-    setUserPick((e.currentTarget as HTMLInputElement).value);
+    setUserPick((e.currentTarget as HTMLInputElement).getAttribute("data-value")!);
   }
 
   const resetGame = () => {
