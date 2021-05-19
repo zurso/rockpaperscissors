@@ -3,8 +3,9 @@ import './App.css';
 import Header from './components/Header'
 import Game from './components/Game'
 import Results from './components/Results'
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Winstreak } from './models';
+import Rules from './components/Rules';
 
 function App() {
   const [userPick, setUserPick] = useState(null as unknown as string);
@@ -12,6 +13,7 @@ function App() {
   const [score, setScore] = useState(0 as number);
   const [userStreak, setUserStreak] = useState(0 as number);
   const [topstreak, setTopstreak] = useState(null as unknown as Winstreak);
+  const [rulesPopup, setRulesPopup] = useState(false as boolean);
 
   const shoot = (e: React.MouseEvent<HTMLElement>) => {
     setPlayed(true);
@@ -62,7 +64,8 @@ function App() {
           { played? <Results pick= {userPick} state = {played} reset= {resetGame} updateScore = {updateUserScore}/>
             : <Game onShoot= {shoot}/> }
         </div>
-      <button>RULES</button>
+        <Rules popup = {rulesPopup} setRulesPopup = {setRulesPopup}/>
+        <button className = "Rules-Button" onClick={() => setRulesPopup(true)}>RULES</button>
     </div>
   );
 }

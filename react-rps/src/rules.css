@@ -1,0 +1,45 @@
+
+.Rules {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color:rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Rules-Popup {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.Close-Button {
+    float: right;
+    color: rgba(41, 39, 39, 0.3);
+    font-weight: 600;
+    font-size: 30px;
+    font-family: Arial, sans-serif;
+    border: none;
+    padding: none;
+    background: none;
+}
+
+.Rules-Header {
+    font-size: 30px;
+    color: hsl(229, 25%, 31%);
+    float: left;
+}
+
+.Rules-Image {
+    position: absolute;
+    left: 50%;
+    top: -8%;
+    transform: translate(-50%, 50%);
+}
