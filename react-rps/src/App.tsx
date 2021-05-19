@@ -57,12 +57,12 @@ function App() {
 
   return (
     <div className="App">
-      <div className="App-Center">
         <Header score = {score} topstreak = {topstreak}/>
-        { played? <Results pick= {userPick} state = {played} reset= {resetGame} updateScore = {updateUserScore}/>
-          : <Game onShoot= {shoot}/> }
-        <button>RULES</button>
-      </div>
+        <div className = "Game-Board">
+          { played? <Results pick= {userPick} state = {played} reset= {resetGame} updateScore = {updateUserScore}/>
+            : <Game onShoot= {shoot}/> }
+        </div>
+      <button>RULES</button>
     </div>
   );
 }

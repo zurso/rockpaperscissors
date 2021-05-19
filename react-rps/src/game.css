@@ -3,10 +3,66 @@
     border-radius: 50%;
     width: 160px;
     height: 160px;
+    border-style: solid;
+    padding: 0;
+    border-width: 20px;
+}
+
+.Rock-Button {
+    border-color: hsl(349, 70%, 56%);
+    box-shadow: 0 7px hsl(349, 66%, 41%), inset 0 6px hsl(230, 8%, 85%);
+}
+
+.Paper-Button {
+    border-color: hsl(230, 89%, 65%);
+    box-shadow: 0 7px hsl(230, 57%, 40%), inset 0 6px hsl(230, 8%, 85%);
+}
+
+.Scissors-Button {
+    border-color: hsl(40, 84%, 53%);
+    box-shadow: 0 7px hsl(39, 89%, 35%), inset 0 6px hsl(230, 8%, 85%);
 }
 
 .Play-Again-Button {
-    border-radius: 10%;
+    border-radius: 5px;
     width: 175px;
     height: 35px;
+    border: none;
+}
+
+.Game {
+    position: relative;
+    width: 350px;
+    height: 350px;
+}
+
+.Triangle {
+    position: absolute;
+    left: 50%;
+    top: 5%;
+    transform: translate(-50%, 50%);
+}
+
+.Top-Left-Triangle {
+    position: absolute;
+    transform: translate(-50%, 50%);
+    left: 15%;
+    top: 0%;
+    z-index: 1;
+}
+
+.Top-Right-Triangle {
+    position: absolute;
+    transform: translate(-50%, 50%);
+    left: 85%;
+    top: 0%;
+    z-index: 1;
+}
+
+.Bottom-Triangle {
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, 50%);
+    z-index: 1;
 }
