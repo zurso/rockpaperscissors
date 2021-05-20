@@ -6,7 +6,7 @@ import scissorsImg from '../assets/images/icon-scissors.svg';
 import "../game.css";
 
 type Props = {
-    pick: Pick
+    pick: Pick   
  }
 
 const PickIcon = ({pick}: Props) => {

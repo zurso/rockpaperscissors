@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import {Pick} from "../models"
 import "../game.css";
+import "../results.css";
 import PickIcon from '../components/PickIcon';
+import EndResults from '../components/EndResults';
 
 type Props = {
     state: boolean
@@ -69,27 +71,25 @@ const Results = ({pick, state, reset, updateScore}: Props) => {
             setShowEndResults(true);
         }
         if(display<3){
-            setTimeout(() => {setDisplay(display+1);},3000);
+            setTimeout(() => {setDisplay(display+1);},1500);
         }
     }, [display])
 
     return (
         <div className = "Results">
-            <div>
-                <div>YOU PICKED</div> 
+            <div className = "User-Pick">
+                <div className = "Pick-Header">YOU PICKED</div> 
                 <div className = "Pick-Display">
                     <PickIcon pick = {userPick}/>
                 </div>
             </div>
 
-            {showEndResults? 
-                <div>
-                    <div>Result: {result}</div>
-                    <button className= "Play-Again-Button" onClick={() => reset()}>PLAY AGAIN</button>
-                </div> : ""}
+            {showEndResults?
+                <EndResults result = {result} reset = {reset}/>
+            : ""}
 
-            <div>
-                <div>HOUSE PICKED</div> 
+            <div className = "House-Pick">
+                <div className = "Pick-Header">THE HOUSE PICKED</div> 
                 <div className = "Pick-Display">
                     <PickIcon pick = {showCpuPick? cpuPick: noPick}/>
                 </div>

@@ -38,17 +38,7 @@
     box-shadow: 0 7px hsl(39, 89%, 35%), inset 0 6px hsl(230, 8%, 85%);
 }
 
-.Pick-Display {
-    position: relative;
-    border: 0;
-    padding: 0;
-    margin: 0;
-    width: 170px;
-    height: 170px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 .Play-Button{
     position: relative;
