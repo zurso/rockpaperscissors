@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
 import {Pick} from "../models"
 import "../game.css";
+import PickIcon from '../components/PickIcon';
 
 type Props = {
     state: boolean
-    pick: string
+    pick: Pick
     reset: () => void   
     updateScore: (point: number) => void 
 }
 
 const Results = ({pick, state, reset, updateScore}: Props) => {
     const [cpuPick, setCpuPick] = useState(null as unknown as Pick);
-    const [userPick, setUserPick] = useState(null as unknown as string);
+    const [userPick, setUserPick] = useState(null as unknown as Pick);
     const [result, setResult] = useState(null as unknown as string);
+    const [display, setDisplay] = useState(1);
+    const [showCpuPick, setShowCpuPick] = useState(false);
+    const [showEndResults, setShowEndResults] = useState(false);
+
+    const noPick: Pick = {name: "nopick"};
     //const [played, setPlayed] = useState(false);
 
     const getCPUPick = () => {
@@ -27,20 +33,13 @@ const Results = ({pick, state, reset, updateScore}: Props) => {
         getCPUPick();
     }
 
-    useEffect(() => {
-        if(state){
-            playGame();
-        }
-    }, [state])
-
-    useEffect(() => {
+    const determineWinner = () => {
         if(cpuPick!=null){
-            console.log("Computer pick: "+cpuPick.name);
-            if(cpuPick.name===userPick){
+            if(cpuPick.name===userPick.name){
                 setResult("Tie");
                 updateScore(0);
             }
-            else if((userPick==="rock"&&cpuPick.name==="scissors")||(userPick==="paper"&&cpuPick.name==="rock")||(userPick==="scissors"&&cpuPick.name==="paper")){
+            else if((userPick.name==="rock"&&cpuPick.name==="scissors")||(userPick.name==="paper"&&cpuPick.name==="rock")||(userPick.name==="scissors"&&cpuPick.name==="paper")){
                 setResult("Win");
                 updateScore(1);
             }
@@ -49,14 +48,52 @@ const Results = ({pick, state, reset, updateScore}: Props) => {
                 updateScore(-1);
             }
         }
+    }
+
+    useEffect(() => {
+        if(state){
+            playGame();
+        }
+    }, [state])
+
+    useEffect(() => {
+        setDisplay(1); 
     }, [cpuPick])
 
+    useEffect(() => {
+        if (display===2){
+            setShowCpuPick(true);
+        }
+        if (display===3){
+            determineWinner();
+            setShowEndResults(true);
+        }
+        if(display<3){
+            setTimeout(() => {setDisplay(display+1);},3000);
+        }
+    }, [display])
+
     return (
-        <div>
-            You picked: {userPick}
-            Computer picked: {cpuPick?.name}
-            Result: {result}
-            <button className= "Play-Again-Button" onClick={() => reset()}>PLAY AGAIN</button>
+        <div className = "Results">
+            <div>
+                <div>YOU PICKED</div> 
+                <div className = "Pick-Display">
+                    <PickIcon pick = {userPick}/>
+                </div>
+            </div>
+
+            {showEndResults? 
+                <div>
+                    <div>Result: {result}</div>
+                    <button className= "Play-Again-Button" onClick={() => reset()}>PLAY AGAIN</button>
+                </div> : ""}
+
+            <div>
+                <div>HOUSE PICKED</div> 
+                <div className = "Pick-Display">
+                    <PickIcon pick = {showCpuPick? cpuPick: noPick}/>
+                </div>
+            </div>  
         </div>
     )
 }

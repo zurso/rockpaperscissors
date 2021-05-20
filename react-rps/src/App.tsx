@@ -6,18 +6,19 @@ import Results from './components/Results'
 import React, { useEffect, useState } from 'react';
 import { Winstreak } from './models';
 import Rules from './components/Rules';
+import {Pick} from "./models";
 
 function App() {
-  const [userPick, setUserPick] = useState(null as unknown as string);
+  const [userPick, setUserPick] = useState(null as unknown as Pick);
   const [played, setPlayed] = useState(false as boolean);
   const [score, setScore] = useState(0 as number);
   const [userStreak, setUserStreak] = useState(0 as number);
   const [topstreak, setTopstreak] = useState(null as unknown as Winstreak);
   const [rulesPopup, setRulesPopup] = useState(false as boolean);
 
-  const shoot = (e: React.MouseEvent<HTMLElement>) => {
+  const passUserPick = (pick: Pick) => {
     setPlayed(true);
-    setUserPick((e.currentTarget as HTMLInputElement).getAttribute("data-value")!);
+    setUserPick(pick);
   }
 
   const resetGame = () => {
@@ -62,7 +63,7 @@ function App() {
         <Header score = {score} topstreak = {topstreak}/>
         <div className = "Game-Board">
           { played? <Results pick= {userPick} state = {played} reset= {resetGame} updateScore = {updateUserScore}/>
-            : <Game onShoot= {shoot}/> }
+            : <Game passUserPick= {passUserPick}/> }
         </div>
         <Rules popup = {rulesPopup} setRulesPopup = {setRulesPopup}/>
         <button className = "Rules-Button" onClick={() => setRulesPopup(true)}>RULES</button>

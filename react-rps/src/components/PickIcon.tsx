@@ -11,7 +11,7 @@ type Props = {
 
 const PickIcon = ({pick}: Props) => {
 
-    switch(pick.name){
+    switch(pick?.name){
         case "rock":
             return (
                 <div className = {["Pick", "Rock"].join(" ")}>
@@ -31,7 +31,10 @@ const PickIcon = ({pick}: Props) => {
                 </div>
             );
         default:
-            return (<div></div>);
+            return (
+                <div className = "No-Pick">
+                </div>
+            );
     }
     
 }
