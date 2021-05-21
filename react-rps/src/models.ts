@@ -10,4 +10,9 @@ type Pick = {
     name: string
 }
 
-export type {Winstreak, Pick}
+type Coordinate = {
+    x: number
+    y: number
+}
+
+export type {Winstreak, Pick, Coordinate}

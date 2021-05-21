@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {Pick} from "../models"
+import {Pick, Coordinate} from "../models"
 import "../game.css";
 import "../results.css";
 import PickIcon from '../components/PickIcon';
@@ -10,6 +10,7 @@ type Props = {
     pick: Pick
     reset: () => void   
     updateScore: (point: number) => void 
+    //setWinCirclePos: (pos: Coordinate) => void 
 }
 
 const Results = ({pick, state, reset, updateScore}: Props) => {
@@ -52,6 +53,24 @@ const Results = ({pick, state, reset, updateScore}: Props) => {
         }
     }
 
+    /*this is the code that's causing performance issues
+    useEffect(() => {
+        console.log("We're in the problem code.");
+        if(result!==null){
+            if(result!=="Tie"){
+                let winCoord: Coordinate = {x:0, y:0};
+                let pickPos = document.getElementById("cpupick")?.getBoundingClientRect()!;
+                if(result==="Win"){
+                    pickPos = document.getElementById("userpick")?.getBoundingClientRect()!;
+                }
+                winCoord.x = pickPos?.left;
+                winCoord.y = pickPos?.top;
+                setWinCirclePos(winCoord);
+            }
+        }
+    }, [result]) */
+    
+
     useEffect(() => {
         if(state){
             playGame();
@@ -79,7 +98,8 @@ const Results = ({pick, state, reset, updateScore}: Props) => {
         <div className = "Results">
             <div className = "User-Pick">
                 <div className = "Pick-Header">YOU PICKED</div> 
-                <div className = "Pick-Display">
+                <div id = "userpick" className = "Pick-Display">
+                    {(result==="Win")?<div className ="Winner-Circle"></div> :""}
                     <PickIcon pick = {userPick}/>
                 </div>
             </div>
@@ -90,7 +110,8 @@ const Results = ({pick, state, reset, updateScore}: Props) => {
 
             <div className = "House-Pick">
                 <div className = "Pick-Header">THE HOUSE PICKED</div> 
-                <div className = "Pick-Display">
+                <div id = "cpupick" className = "Pick-Display">
+                    {(result==="Loss")?<div className ="Winner-Circle"></div> :""}
                     <PickIcon pick = {showCpuPick? cpuPick: noPick}/>
                 </div>
             </div>  
