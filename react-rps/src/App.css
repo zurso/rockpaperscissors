@@ -13,23 +13,6 @@
   background: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
 }
 
-
-
-.Winner-Circle-Container{
-  position: absolute;
-  border: 0;
-  padding: 0;
-  margin: 0;
-  width: 170px;
-  height: 170px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  left: 50%;
-  top: 0%;
-  transform: translate(-50%, 50%);
-}
-
 .App-Center {
   position: absolute;
   left: 50%;
@@ -39,7 +22,9 @@
 .Game-Board {
   position: absolute;
   left: 50%;
-  top: 35%;
+  top: 330px;
+  height: 600px;
+  width: 600px;
   transform: translate(-50%, -50%);
 }
 

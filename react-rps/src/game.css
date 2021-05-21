@@ -62,8 +62,12 @@
 
 .Game {
     position: relative;
-    width: 350px;
-    height: 350px;
+    width: 600px;
+    height: 600px;
+    top: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .Triangle {
@@ -76,23 +80,23 @@
 .Top-Left-Triangle {
     position: absolute;
     transform: translate(-50%, 50%);
-    left: 15%;
-    top: 10%;
+    left: 30%;
+    top: 8%;
     z-index: 1;
 }
 
 .Top-Right-Triangle {
     position: absolute;
     transform: translate(-50%, 50%);
-    left: 85%;
-    top: 10%;
+    left: 70%;
+    top: 8%;
     z-index: 1;
 }
 
 .Bottom-Triangle {
     position: absolute;
     left: 50%;
-    top: 70%;
+    top: 45%;
     transform: translate(-50%, 50%);
     z-index: 1;
 }
