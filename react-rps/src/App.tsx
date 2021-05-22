@@ -3,8 +3,8 @@ import './App.css';
 import Header from './components/Header'
 import Game from './components/Game'
 import Results from './components/Results'
-import React, { useEffect, useState } from 'react';
-import { Winstreak, Coordinate, Pick } from './models';
+import { useEffect, useState } from 'react';
+import { Winstreak, Pick } from './models';
 import Rules from './components/Rules';
 
 
@@ -15,8 +15,7 @@ function App() {
   const [userStreak, setUserStreak] = useState(0 as number);
   const [topstreak, setTopstreak] = useState(null as unknown as Winstreak);
   const [rulesPopup, setRulesPopup] = useState(false as boolean);
-  /* const [highlightWinner, setHighlightWinner] = useState(false as boolean);
-  const [winCirclePos, setWinCirclePos] = useState({x:0, y:0} as Coordinate); */
+  const [picks, setPicks] = useState(null as unknown as Pick[]);
 
   const passUserPick = (pick: Pick) => {
     setPlayed(true);
@@ -25,14 +24,10 @@ function App() {
 
   const resetGame = () => {
     setPlayed(false);
-    //setHighlightWinner(false);
   }
 
   const updateUserScore = (point: number) => {
     setScore(point+score);
-    /* if(point!==0){
-      setHighlightWinner(true);
-    } */
     if(point===1){
       setUserStreak(userStreak+1);
     }
@@ -53,18 +48,6 @@ function App() {
     }
   }
 
-  /*problem code
-  useEffect(() => {  
-    if(highlightWinner){
-      let circle: HTMLElement = document.getElementById('winnercircle')!;
-      circle.style.top = winCirclePos.y+"px";
-      circle.style.left = winCirclePos.x+"px";
-      console.log("x: "+circle.style.left);
-      console.log("y: "+circle.style.top);
-    }
-    
-  }, [winCirclePos]); */
-
   useEffect(() => {
 
     //if(!topstreak){
@@ -76,18 +59,20 @@ function App() {
       //}
     );
 
+  useEffect(() => {
+    fetch('http://localhost:8080/picks').then((response) => 
+      response.json()).then(data => {
+        setPicks(data);
+      });
+  }, []);
+
   return (
     <div className="App">
-        {/*highlightWinner?
-          <div id="winnercircle" className="Winner-Circle-Container">
-            <div className = "Winner-Circle"></div>
-          </div>
-        : ""*/}
         <Header score = {score} topstreak = {topstreak}/>
-        <div className = "Game-Board">
+        {picks? <div className = "Game-Board">
           { played? <Results pick= {userPick} state = {played} reset= {resetGame} updateScore = {updateUserScore}/>
-            : <Game passUserPick= {passUserPick}/> }
-        </div>
+            : <Game passUserPick= {passUserPick} picks = {picks}/> }
+        </div> : ""}
         <Rules popup = {rulesPopup} setRulesPopup = {setRulesPopup}/>
         <button className = "Rules-Button" onClick={() => setRulesPopup(true)}>RULES</button>
     </div>

@@ -1,6 +1,6 @@
 package com.rps.rockpaperscissors.web;
 
-import com.rps.rockpaperscissors.service.CPUMoveService;
+import com.rps.rockpaperscissors.service.PickService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,13 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-public class CPUMoveController {
+public class PickController {
 
     @Autowired
-    private CPUMoveService cmoveService;
+    private PickService pickService;
     
     @GetMapping("/cpuMove")
     public ResponseEntity<?> getCPUMove(){
-        return ResponseEntity.ok(cmoveService.getCPUMove());
+        return ResponseEntity.ok(pickService.getCPUPick());
+    }
+
+    @GetMapping("/picks")
+    public ResponseEntity<?> getPicks(){
+        return ResponseEntity.ok(pickService.getPicks());
     }
 }

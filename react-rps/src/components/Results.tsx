@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {Pick, Coordinate} from "../models"
+import {Pick} from "../models"
 import "../game.css";
 import "../results.css";
 import PickIcon from '../components/PickIcon';
@@ -10,7 +10,6 @@ type Props = {
     pick: Pick
     reset: () => void   
     updateScore: (point: number) => void 
-    //setWinCirclePos: (pos: Coordinate) => void 
 }
 
 const Results = ({pick, state, reset, updateScore}: Props) => {
@@ -21,8 +20,7 @@ const Results = ({pick, state, reset, updateScore}: Props) => {
     const [showCpuPick, setShowCpuPick] = useState(false);
     const [showEndResults, setShowEndResults] = useState(false);
 
-    const noPick: Pick = {name: "nopick"};
-    //const [played, setPlayed] = useState(false);
+    const noPick: Pick = {id: 0, name: "nopick", beats: 0};
 
     const getCPUPick = () => {
         fetch('http://localhost:8080/cpuMove').then((response) => 
@@ -38,37 +36,20 @@ const Results = ({pick, state, reset, updateScore}: Props) => {
 
     const determineWinner = () => {
         if(cpuPick!=null){
-            if(cpuPick.name===userPick.name){
-                setResult("Tie");
-                updateScore(0);
-            }
-            else if((userPick.name==="rock"&&cpuPick.name==="scissors")||(userPick.name==="paper"&&cpuPick.name==="rock")||(userPick.name==="scissors"&&cpuPick.name==="paper")){
+            if(userPick.beats===cpuPick.id){
                 setResult("Win");
                 updateScore(1);
             }
-            else{
+            else if(cpuPick.beats===userPick.id){
                 setResult("Loss");
                 updateScore(-1);
             }
-        }
-    }
-
-    /*this is the code that's causing performance issues
-    useEffect(() => {
-        console.log("We're in the problem code.");
-        if(result!==null){
-            if(result!=="Tie"){
-                let winCoord: Coordinate = {x:0, y:0};
-                let pickPos = document.getElementById("cpupick")?.getBoundingClientRect()!;
-                if(result==="Win"){
-                    pickPos = document.getElementById("userpick")?.getBoundingClientRect()!;
-                }
-                winCoord.x = pickPos?.left;
-                winCoord.y = pickPos?.top;
-                setWinCirclePos(winCoord);
+            else{
+                setResult("Tie");
+                updateScore(0);
             }
         }
-    }, [result]) */
+    }
     
 
     useEffect(() => {

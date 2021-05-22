@@ -6,37 +6,37 @@ import PickIcon from '../components/PickIcon';
 import React from 'react';
 
 type Props = {
-   passUserPick: (pick: Pick) => void    
+   passUserPick: (pick: Pick) => void
+   picks: Pick[]  
 }
 
-const Game = ({passUserPick}: Props) => {
-
-    const rock: Pick = {name: "rock"};
-    const paper: Pick = {name: "paper"};
-    const scissors: Pick = {name: "scissors"};
+const Game = ({passUserPick, picks}: Props) => {
 
     const shoot = (e: React.MouseEvent<HTMLElement>) => {
-        let pick: Pick = {name: (e.currentTarget as HTMLInputElement).getAttribute("data-value")!};
-        passUserPick(pick);
+        let name: string = (e.currentTarget as HTMLInputElement).getAttribute("data-value")!;
+        picks.forEach((p: Pick) => {
+            if(p.name===name){
+                passUserPick(p);
+            }
+        });
       }
     
     return (
         <div className = "Game">
-            
             <div className = "Top-Left-Triangle">
-                <div className = "Play-Button" data-value={paper.name} onClick={(e: React.MouseEvent<HTMLElement>) => shoot(e)}>
-                    <PickIcon pick = {paper} />
+                <div className = "Play-Button" data-value={picks[1].name} onClick={(e: React.MouseEvent<HTMLElement>) => shoot(e)}>
+                    <PickIcon pick = {picks[1]} />
                 </div>
             </div>
             <div className = "Top-Right-Triangle">
-                <div className = "Play-Button" data-value={scissors.name} onClick={(e: React.MouseEvent<HTMLElement>) => shoot(e)}>
-                    <PickIcon pick = {scissors} />
+                <div className = "Play-Button" data-value={picks[2].name} onClick={(e: React.MouseEvent<HTMLElement>) => shoot(e)}>
+                    <PickIcon pick = {picks[2]} />
                 </div>
             </div>
             <img className = "Triangle" src={triangle} alt="triangle"/>
             <div className = "Bottom-Triangle">
-                <div className = "Play-Button" data-value={rock.name} onClick={(e: React.MouseEvent<HTMLElement>) => shoot(e)}>
-                    <PickIcon pick = {rock} />
+                <div className = "Play-Button" data-value={picks[0].name} onClick={(e: React.MouseEvent<HTMLElement>) => shoot(e)}>
+                    <PickIcon pick = {picks[0]} />
                 </div>
             </div>
         </div>

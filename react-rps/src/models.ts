@@ -7,12 +7,9 @@ type Winstreak = {
 }
 
 type Pick = {
+    id: number
     name: string
+    beats: number
 }
 
-type Coordinate = {
-    x: number
-    y: number
-}
-
-export type {Winstreak, Pick, Coordinate}
+export type {Winstreak, Pick}
