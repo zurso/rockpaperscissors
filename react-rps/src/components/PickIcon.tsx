@@ -1,13 +1,15 @@
 
 import {Pick} from "../models"
-import rockImg from '../assets/images/icon-rock.svg';
-import paperImg from '../assets/images/icon-paper.svg';
-import scissorsImg from '../assets/images/icon-scissors.svg';
-import "../game.css";
+import rockImg from "../assets/images/icon-rock.svg";
+import paperImg from "../assets/images/icon-paper.svg";
+import scissorsImg from "../assets/images/icon-scissors.svg";
+import "../styles/game.css";
 
 type Props = {
     pick: Pick   
  }
+
+ //Component for the pick graphic
 
 const PickIcon = ({pick}: Props) => {
 

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "http://localhost:3000")
 public class PickController {
 
+    //More RESTful endpoints can be created as needed
+
     @Autowired
     private PickService pickService;
     

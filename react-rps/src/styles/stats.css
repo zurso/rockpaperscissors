@@ -1,6 +1,8 @@
+.Winstreak-Label{
+    width: 180px;
+}
 
-
-.ScoreBlock {
+.Score-Block {
     width: 140px;
     background-color: white;
     border-radius: 10px;
@@ -9,7 +11,7 @@
     position: relative;
 }
 
-.WinStreakBlock {
+.Winstreak-Block {
     width: 275px;
     background-color: white;
     border-radius: 10px;
@@ -19,7 +21,7 @@
     position: relative;
 }
 
-.StatsLabel {
+.Stats-Label {
     font-weight: 700;
     font-size: 15px;
     color: hsl(229, 64%, 46%);
@@ -29,7 +31,7 @@
     transform: translate(-50%, 50%);
 }
 
-.StatsNumber {
+.Stats-Number {
     font-weight: 700;
     font-size: 50px;
     color: hsl(229, 25%, 31%);

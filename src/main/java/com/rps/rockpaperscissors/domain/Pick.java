@@ -2,6 +2,7 @@ package com.rps.rockpaperscissors.domain;
 
 public class Pick {
 
+    //improvement for future: create another integer attribute "order" which holds order of display on screen for dynamic display on frontend.
     private int id;
     private String name;
     private int beats;

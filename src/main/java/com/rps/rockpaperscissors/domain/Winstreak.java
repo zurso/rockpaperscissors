@@ -2,6 +2,7 @@ package com.rps.rockpaperscissors.domain;
 
 import java.sql.Timestamp;
 
+//a timestamp and the user's score when they get a new top winstreak might be nice to have for future use cases
 public class Winstreak {
 
     private int id;

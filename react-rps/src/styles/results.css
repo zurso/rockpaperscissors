@@ -91,9 +91,9 @@
 }
 
 .Win-Tie-Text {
-    color: hsl(214, 47%, 23%)
+    color: hsl(214, 47%, 23%);
 }
 
 .Lose-Text {
-    color: rgb(180, 47, 47)
+    color: rgb(180, 47, 47);
 }

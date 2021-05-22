@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "http://localhost:3000")
 public class WinstreakController {
     
+    //More RESTful endpoints can be created as needed
+
     @Autowired
     private WinstreakService wstreakService;
 

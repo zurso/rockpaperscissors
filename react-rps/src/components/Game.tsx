@@ -1,17 +1,20 @@
 
-import triangle from '../assets/images/bg-triangle.svg';
-import "../game.css";
+import triangle from "../assets/images/bg-triangle.svg";
+import "../styles/game.css";
 import {Pick} from "../models";
-import PickIcon from '../components/PickIcon';
-import React from 'react';
+import PickIcon from "../components/PickIcon";
+import React from "react";
 
 type Props = {
    passUserPick: (pick: Pick) => void
    picks: Pick[]  
 }
 
+//component where user plays the game, chooses rock/paper/scissors
+
 const Game = ({passUserPick, picks}: Props) => {
 
+    //gets user's pick when choice is clicked
     const shoot = (e: React.MouseEvent<HTMLElement>) => {
         let name: string = (e.currentTarget as HTMLInputElement).getAttribute("data-value")!;
         picks.forEach((p: Pick) => {
@@ -21,6 +24,7 @@ const Game = ({passUserPick, picks}: Props) => {
         });
       }
     
+    //Improvement for future (mentioned in Spring domain): have order for picks so they can be sorted and displayed dynamically
     return (
         <div className = "Game">
             <div className = "Top-Left-Triangle">

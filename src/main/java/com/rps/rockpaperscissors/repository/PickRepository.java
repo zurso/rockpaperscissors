@@ -14,6 +14,7 @@ public class PickRepository {
     private List<Pick> picks = new ArrayList<>();
     private AtomicInteger idCounter = new AtomicInteger(1);
 
+    //just for the fake DB
     public void initPicks(){
         Pick rock = new Pick(idCounter.getAndIncrement(), "rock");
         Pick paper = new Pick(idCounter.getAndIncrement(), "paper");

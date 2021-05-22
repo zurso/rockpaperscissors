@@ -15,6 +15,7 @@ public class WinstreakService {
     @Autowired
     private WinstreakRepository wstreakRepo;
 
+    //returns the Winstreak with the highest streak value.
     public Winstreak getTopWinstreak(){
         List<Winstreak> winstreaks = wstreakRepo.getWinstreaks();
         if(winstreaks.isEmpty()){

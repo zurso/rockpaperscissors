@@ -17,6 +17,7 @@ public class PickService {
 
     private Random r = new Random();
     
+    //randomly chooses one pick from all choices.
     public Pick getCPUPick(){
         List<Pick> picks = pickRepo.getPicks();
         return picks.get(r.nextInt(picks.size()));

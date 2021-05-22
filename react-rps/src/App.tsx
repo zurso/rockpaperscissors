@@ -1,11 +1,11 @@
 
-import './App.css';
-import Header from './components/Header'
-import Game from './components/Game'
-import Results from './components/Results'
-import { useEffect, useState } from 'react';
-import { Winstreak, Pick } from './models';
-import Rules from './components/Rules';
+import "./styles/App.css";
+import Header from "./components/Header"
+import Game from "./components/Game"
+import Results from "./components/Results"
+import { useEffect, useState } from "react";
+import { Winstreak, Pick } from "./models";
+import Rules from "./components/Rules";
 
 
 function App() {
@@ -17,7 +17,10 @@ function App() {
   const [rulesPopup, setRulesPopup] = useState(false as boolean);
   const [picks, setPicks] = useState(null as unknown as Pick[]);
 
+  const rulesBtnText: string = "RULES";
+
   const passUserPick = (pick: Pick) => {
+    //possible issue with asynchronous functions here -- userPick might not be set by the time it's needed. Further investigation needed.
     setPlayed(true);
     setUserPick(pick);
   }
@@ -28,53 +31,54 @@ function App() {
 
   const updateUserScore = (point: number) => {
     setScore(point+score);
+
+    //Only saving a new top Winstreak when user's streak is broken.
     if(point===1){
       setUserStreak(userStreak+1);
     }
     else{
       if(userStreak>topstreak.streak){
-        //post
         let w: Winstreak = {
           score: score,
           streak: userStreak
         };
-        fetch('http://localhost:8080/winstreaks', {
-          headers: {'content-type': 'application/json'},
-          method: 'POST',
+        fetch("http://localhost:8080/winstreaks", {
+          headers: {"content-type": "application/json"},
+          method: "POST",
           body: JSON.stringify(w)
-        });
+        }).catch(err => console.log(err));
       }
       setUserStreak(0);
     }
   }
 
+  //continuously fetch the most recent top winstreak
   useEffect(() => {
-
-    //if(!topstreak){
-        fetch('http://localhost:8080/topWinstreak').then((response) => 
+        fetch("http://localhost:8080/topWinstreak").then((response) => 
         response.json()).then(data => {
             setTopstreak(data);
-        });
+        }).catch(err => console.log(err));
         }
-      //}
     );
 
+  //retrieve list of picks
   useEffect(() => {
-    fetch('http://localhost:8080/picks').then((response) => 
+    fetch("http://localhost:8080/picks").then((response) => 
       response.json()).then(data => {
         setPicks(data);
-      });
+      }).catch(err => console.log(err));
   }, []);
 
   return (
     <div className="App">
         <Header score = {score} topstreak = {topstreak}/>
         {picks? <div className = "Game-Board">
-          { played? <Results pick= {userPick} state = {played} reset= {resetGame} updateScore = {updateUserScore}/>
-            : <Game passUserPick= {passUserPick} picks = {picks}/> }
-        </div> : ""}
+                { played? <Results userPick= {userPick} state = {played} reset= {resetGame} updateScore = {updateUserScore}/>
+                : <Game passUserPick= {passUserPick} picks = {picks}/> }
+                </div> 
+        : ""}
         <Rules popup = {rulesPopup} setRulesPopup = {setRulesPopup}/>
-        <button className = "Rules-Button" onClick={() => setRulesPopup(true)}>RULES</button>
+        <button className = "Rules-Button" onClick={() => setRulesPopup(true)}>{rulesBtnText}</button>
     </div>
   );
 }

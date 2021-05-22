@@ -1,21 +1,20 @@
-import { useEffect, useState } from "react";
-import "../stats.css";
+
+import "../styles/stats.css";
 
 type Props = {
-    updatedScore: number
+    score: number
  }
 
-const Score = ({updatedScore}: Props) => {
-    const [score, setScore] = useState(0 as number);
+ //Component for displaying the user's current score
 
-    useEffect(() => {
-        setScore(updatedScore);
-    }, [updatedScore])
+const Score = ({score}: Props) => {
+
+    const scoreText: string = "SCORE";
 
     return (
-        <div className = "ScoreBlock">
-                <div className = "StatsLabel">SCORE</div>
-                <div className = "StatsNumber">{score}</div>
+        <div className = "Score-Block">
+                <div className = "Stats-Label">{scoreText}</div>
+                <div className = "Stats-Number">{score}</div>
         </div>
     )
 }
